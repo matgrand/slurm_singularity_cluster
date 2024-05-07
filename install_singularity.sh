@@ -2,6 +2,7 @@
 
 # now we are in ubuntu
 # run this script to create a Singularity container on Ubuntu
+# (following https://apptainer.org/docs/admin/main/installation.html)
 # tu run script open a terminal in the repo direectory and run
 # sh singularity/create_singularity_container.sh
 
