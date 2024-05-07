@@ -8,4 +8,4 @@ multipass list
 echo "VM reset done, you should not see any ubu22 VM in the list above"
 
 #delete the container
-rm -rf test_container.sif
+sudo rm -rf test_container.sif
