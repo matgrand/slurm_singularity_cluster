@@ -3,10 +3,8 @@ From: pytorch/pytorch # Use the pytorch/pytorch image as the base image
 
 %post # Optional: after the base image is installed run the following commands
     apt -y update # Update the package list
-    apt -y install cmatrix # Install a random package
     pip install matplotlib # Install a python package
 
 %runscript #Optional: the command to run when the container is started
     python --version # Print the python version
     python -c "import torch; print(torch.__version__)" # Print the pytorch version
-    cmatrix # Run the cmatrix command to show that it is installed (matrix screensaver)

@@ -34,7 +34,6 @@ The easiest (and most compatible across os) way is to create the container on th
     interactive
     ```
     You should be in a compute node `<username>@runnersomething:~ $`.
-    > [!NOTE]  
     > Don't abuse interactive sessions, they are meant for testing and debugging. Not for running
     long jobs.
 
@@ -60,23 +59,19 @@ The easiest (and most compatible across os) way is to create the container on th
 
     %post # Optional: after the base image is installed run the following commands
         apt -y update # Update the package list
-        apt -y install cmatrix # Install a random package
         pip install matplotlib # Install a python package
 
     %runscript #Optional: the command to run when the container is started
         python --version # Print the python version
         python -c "import torch; print(torch.__version__)" # Print the pytorch version
-        cmatrix # Run the cmatrix command to show that it is installed (matrix screensaver, ctrl+c to exit)
     ```
     The `mydefinition.def` file will create a singularity container based on the official pytrch docker
     image (for more base images refer to the [docker hub](https://hub.docker.com/)). It will install
-    the `cmatrix` package and the `matplotlib` python package.
+    the `matplotlib` python package.
     It will also print the python and pytorch versions. 
-    > [!NOTE]  
     > If you already know all the necessary dependencies, you can put them in the `.def` file.
     > Otherwise, you can install them later by running commands in the container.
 
-    > [!NOTE]  
     > [Here](https://apptainer.org/docs/user/main/quick_start.html#building-images-from-scratch) you
     can find more information on how to create a container from scratch and what the `%post` and
     `%runscript` sections do.
@@ -90,7 +85,6 @@ The easiest (and most compatible across os) way is to create the container on th
     The `--sandbox` flag is used to create a writable container, so you can shell into it and
     install more packages if needed. If you don't need to install more packages, you can remove the
     `--sandbox` flag.
-    > [!NOTE]
     > This command may take a while to run, depending on the internet connection and the packages.
 
 7. Optional: log into the container and install more packages:
