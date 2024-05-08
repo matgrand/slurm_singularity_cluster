@@ -9,47 +9,25 @@
 brew install qemu lima
 
 #delete the previous vm 
-limactl stop lima_apptainer
-limactl delete lima_apptainer
+limactl stop default
+limactl delete default
 
-# start lima
-
-#fast
-# limactl start \
-#     --name=lima_apptainer \
-#     --cpus=6 \
-#     --memory=6 \
-#     --disk=50 \
-#     --vm-type=vz \
-#     --rosetta \
-#     --tty=False \
-#     --network=vzNAT \
-#     template://apptainer-rootful \
-#     --mount-writable \
-#     # --mount $PWD:/singularity \
-
-# #slow
+# start arm64 vm with lima and rosetta
 limactl start \
-    --name=lima_apptainer \
-    --cpus=6 \
-    --memory=6 \
-    --disk=50 \
+    --vm-type=vz \
+    --rosetta \
     --tty=False \
-    --arch=x86_64 \
-    --mount-writable \
-    template://apptainer
+    # --cpus=4 \
+    # --memory=4 \
+    # --disk=50 \
 
+# writable folder in /tmp/lima
 
-# explanation of the above command: 
-# --name lima_apptainer: name of the VM 
-# --cpus 4: number of CPUs
-# --memory 4: memory in GB
-# --disk 50: disk size in GB
-# --tty: disable interactive user interface
-# --mount $PWD:/singularity: mount the current directory to the VM
-# --mount-writable: mount the directory in writable mode
-# --vm-type=qemu: use qemu
-# --arch=x86_64: architecture is x86_64, not arm64, bc we are on arm64 M1 Mac and we want to create a x86 container
+echo "Arm VM started, creating x86 container inside the VM"
 
-# log into the VM
-limactl shell lima_apptainer
+#copy everything in the current directory to /tmp/lima
+cp -r . /tmp/lima
+
+# run a x86 container in the rosetta vm (-it -> interactive terminal, --rm -> remove container after exit)
+
+lima nerdctl run -it --rm --platform=linux/amd64 -v /tmp/lima:/tmp/lima ubuntu:22.04 bash

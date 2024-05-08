@@ -7,14 +7,14 @@
 # sh singularity/create_singularity_container.sh
 
 # update the system
-sudo apt update -y && sudo apt upgrade -y
+apt update -y && apt upgrade -y
 
 # install singularity
-sudo apt install -y software-properties-common
-sudo add-apt-repository -y ppa:apptainer/ppa
-sudo apt update -y
-sudo apt install -y apptainer
-# sudo apt install -y apptainer-suid 
+apt install -y software-properties-common
+add-apt-repository -y ppa:apptainer/ppa
+apt update -y
+# apt install -y apptainer
+apt install -y apptainer-suid 
 
 # check the singularity version
 singularity --version
