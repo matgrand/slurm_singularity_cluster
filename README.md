@@ -100,7 +100,52 @@ The easiest (and most compatible across os) way is to create the container on th
     ```
 
 ## Step 2: Create a Slurm job file and submit it to the scheduler
-lfg
+For a more detailed explanation of the Slurm scheduler and job examples, refer to the [Using
+Slurm](https://docs.dei.unipd.it/en/CLUSTER/using-slurm) and [Slurm Job
+Examples](https://docs.dei.unipd.it/en/CLUSTER/SLURMExamples) sections of the DEI cluster
+documentation.
+
+To run a python script in the cluster, you need to create a Slurm job file like the following:
+`myjob.sh`:
+```bash
+    #SBATCH --job-name=my_first_job
+    #SBATCH --error=output.%j.err
+    #SBATCH --output=error.%j.out
+    #SBATCH --partition=allgroups
+    #SBATCH --ntasks=1
+    #SBATCH --mem=1G
+    #SBATCH --time=00:05:00
+    #SBATCH --gres=gpu:1
+
+    cd $WORKING_DIR
+
+    srun singularity exec --nv .mycontainer/mycontainer.sif python test_script.py
+```
+The `myjob.sh` file will run the `test_script.py` python script in the `mycontainer.sif` container.
+
+The `#SBATCH` lines are the Slurm directives. They specify the job name, the error and output files,
+the partition, the number of tasks, the memory, the time, and the number of GPUs. You can change
+these values to suit your needs.
+
+The `cd $WORKING_DIR` line changes the directory to the working directory. The working directory is
+the directory where the job is submitted. You can change this line to `cd /path/to/your/directory`
+if you want to run the job in a specific directory.
+
+The `srun singularity exec --nv .mycontainer/mycontainer.sif python test_script.py` line runs the
+`test_script.py` python script in the `mycontainer.sif` container. The `--nv` flag is used to enable
+GPU support. You can remove this flag if you don't need GPU support.
+
+## Step 3: Submit the job to the scheduler
+
+To submit the job to the scheduler, type:
+```bash
+sbatch myjob.sh
+```
+
+For more information on how to monitor and manage your jobs, refer to the [Using
+Slurm](https://docs.dei.unipd.it/en/CLUSTER/using-slurm) section of the DEI cluster documentation.
+
+
 
 
 
