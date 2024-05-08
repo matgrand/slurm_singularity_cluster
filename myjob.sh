@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1
 #SBATCH --mem=1G
 #SBATCH --time=00:05:00
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu
 
 cd $WORKING_DIR
 

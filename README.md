@@ -115,7 +115,7 @@ To run a python script in the cluster, you need to create a Slurm job file like 
     #SBATCH --ntasks=1
     #SBATCH --mem=1G
     #SBATCH --time=00:05:00
-    #SBATCH --gres=gpu:1
+    #SBATCH --gres=gpu
 
     cd $WORKING_DIR
 
@@ -139,7 +139,7 @@ GPU support. You can remove this flag if you don't need GPU support.
 
 To submit the job to the scheduler, type:
 ```bash
-sbatch myjob.sh
+sbatch slurm_singularity_cluster/myjob.sh
 ```
 
 For more information on how to monitor and manage your jobs, refer to the [Using
