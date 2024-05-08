@@ -5,9 +5,9 @@
 rm -rf test_container.sif
 
 # build the container (sandbox -> to make modifications to the container later)
-# apptainer build --sandbox test_container.sif pt.def 
+apptainer build --sandbox test_container.sif pt.def 
 # apptainer build --sandbox test_container.sif numpy.def 
-apptainer build --sandbox test_container.sif amd64_ubu.def 
+# apptainer build --sandbox test_container.sif amd64_ubu.def 
 # apptainer build --sandbox test_container.sif ubu20.def 
 # apptainer build --sandbox test_container.sif ubu22.def 
 
