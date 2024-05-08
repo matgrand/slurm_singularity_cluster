@@ -99,7 +99,7 @@ The easiest (and most compatible across os) way is to create the container on th
     exit
     ```
 
-## Step 2: Create a Slurm job file and submit it to the scheduler
+## Step 2: Create a Slurm job file
 This section will show you how to create a Slurm job file and submit it to the scheduler. An example
 job file is provided in this repository (`myjob.sh`). This is the file we will request the scheduler to run.
 
