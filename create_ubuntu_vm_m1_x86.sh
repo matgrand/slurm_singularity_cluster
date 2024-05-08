@@ -23,6 +23,7 @@ limactl start \
 
 # writable folder in /tmp/lima
 
+
 echo "Arm VM started, creating x86 container inside the VM"
 
 #copy everything in the current directory to /tmp/lima
