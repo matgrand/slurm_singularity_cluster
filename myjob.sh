@@ -13,4 +13,4 @@ echo "Files: $(ls $WORKING_DIR)"
 cd $WORKING_DIR
 echo "Starting job"
 
-srun singularity exec --nv mycontainer/mycontainer.sif python test_script.py
+srun singularity exec --nv mycontainer/mycontainer.sif python mycontainer/slurm_singularity_cluster/test_script.py

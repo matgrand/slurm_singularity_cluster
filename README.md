@@ -108,19 +108,22 @@ documentation.
 To run a python script in the cluster, you need to create a Slurm job file like the following:
 `myjob.sh`:
 ```bash
-    #!/bin/bash
-    #SBATCH --job-name=my_first_job
-    #SBATCH --error=output.%j.err
-    #SBATCH --output=error.%j.out
-    #SBATCH --partition=allgroups
-    #SBATCH --ntasks=1
-    #SBATCH --mem=1G
-    #SBATCH --time=00:05:00
-    #SBATCH --gres=gpu:a40:1
+#!/bin/bash
+#SBATCH --job-name=my_first_job
+#SBATCH --error=output.%j.err
+#SBATCH --output=output.%j.out
+#SBATCH --partition=allgroups
+#SBATCH --ntasks=1
+#SBATCH --mem=1G
+#SBATCH --time=00:05:00
+#SBATCH --gres=gpu:a40:1
 
-    cd $WORKING_DIR
+echo "Working directory is $WORKING_DIR"
+echo "Files: $(ls $WORKING_DIR)"
+cd $WORKING_DIR
+echo "Starting job"
 
-    srun singularity exec --nv mycontainer.sif python test_script.py
+srun singularity exec --nv mycontainer/mycontainer.sif python mycontainer/slurm_singularity_cluster/test_script.py
 ```
 The `myjob.sh` file will run the `test_script.py` python script in the `mycontainer.sif` container.
 
