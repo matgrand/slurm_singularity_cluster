@@ -1,4 +1,4 @@
-# DEI Cluster: how to Slurm and Singularity containers for Python Machine Learning jobs
+io# DEI Cluster: how to Slurm and Singularity containers for Python Machine Learning jobs
 
 This document describes how to use Slurm and Singularity containers in the DEI cluster. For
 additional information refer to the [DEI cluster
@@ -65,7 +65,7 @@ The easiest (and most compatible across os) way is to create the container on th
         python --version # Print the python version
         python -c "import torch; print(torch.__version__)" # Print the pytorch version
     ```
-    The `mydefinition.def` file will create a singularity container based on the official pytrch docker
+    The `mydefinition.def` file will create a singularity container based on the official pytorch docker
     image (for more base images refer to the [docker hub](https://hub.docker.com/)). It will install
     the `matplotlib` python package.
     It will also print the python and pytorch versions. 
