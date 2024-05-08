@@ -34,7 +34,7 @@ The easiest (and most compatible across os) way is to create the container on th
     interactive
     ```
     You should be in a compute node `<username>@runnersomething:~ $`.
-    >[!NOTE]
+    >[!NOTE]  
     >don't abuse interactive sessions, they are meant for testing and debugging. Not for running
     long jobs.
 
@@ -72,11 +72,11 @@ The easiest (and most compatible across os) way is to create the container on th
     image (for more base images refer to the [docker hub](https://hub.docker.com/)). It will install
     the `cmatrix` package and the `matplotlib` python package.
     It will also print the python and pytorch versions. 
-    >[!NOTE]
+    >[!NOTE]  
     >If you already know all the necessary dependencies, you can put them in the `.def` file.
     >Otherwise, you can install them later by running commands in the container.
 
-    >[!NOTE]
+    >[!NOTE]  
     >[Here](https://apptainer.org/docs/user/main/quick_start.html#building-images-from-scratch) you
     can find more information on how to create a container from scratch and what the `%post` and
     `%runscript` sections do.
