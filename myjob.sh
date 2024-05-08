@@ -10,4 +10,4 @@
 
 cd $WORKING_DIR
 
-srun singularity exec --nv .mycontainer/mycontainer.sif python test_script.py
+srun singularity exec --nv mycontainer.sif python test_script.py

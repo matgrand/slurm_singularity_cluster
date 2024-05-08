@@ -120,7 +120,7 @@ To run a python script in the cluster, you need to create a Slurm job file like 
 
     cd $WORKING_DIR
 
-    srun singularity exec --nv .mycontainer/mycontainer.sif python test_script.py
+    srun singularity exec --nv mycontainer.sif python test_script.py
 ```
 The `myjob.sh` file will run the `test_script.py` python script in the `mycontainer.sif` container.
 
@@ -132,7 +132,7 @@ The `cd $WORKING_DIR` line changes the directory to the working directory. The w
 the directory where the job is submitted. You can change this line to `cd /path/to/your/directory`
 if you want to run the job in a specific directory.
 
-The `srun singularity exec --nv .mycontainer/mycontainer.sif python test_script.py` line runs the
+The `srun singularity exec --nv mycontainer.sif python test_script.py` line runs the
 `test_script.py` python script in the `mycontainer.sif` container. The `--nv` flag is used to enable
 GPU support. You can remove this flag if you don't need GPU support.
 
@@ -141,6 +141,16 @@ GPU support. You can remove this flag if you don't need GPU support.
 To submit the job to the scheduler, type:
 ```bash
 sbatch slurm_singularity_cluster/myjob.sh
+```
+
+To check the status of the job, type:
+```bash
+squeue -u <username>
+```
+
+To check the output of the job, type:
+```bash
+cat output.<job_id>.out
 ```
 
 For more information on how to monitor and manage your jobs, refer to the [Using
