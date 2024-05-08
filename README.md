@@ -1,4 +1,4 @@
-io# DEI Cluster: how to Slurm and Singularity containers for Python Machine Learning jobs
+# DEI Cluster: how to Slurm and Singularity containers for Python Machine Learning jobs
 
 This document describes how to use Slurm and Singularity containers in the DEI cluster. For
 additional information refer to the [DEI cluster
