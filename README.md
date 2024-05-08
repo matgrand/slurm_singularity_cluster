@@ -108,6 +108,7 @@ documentation.
 To run a python script in the cluster, you need to create a Slurm job file like the following:
 `myjob.sh`:
 ```bash
+    #!/bin/bash
     #SBATCH --job-name=my_first_job
     #SBATCH --error=output.%j.err
     #SBATCH --output=error.%j.out
@@ -115,7 +116,7 @@ To run a python script in the cluster, you need to create a Slurm job file like 
     #SBATCH --ntasks=1
     #SBATCH --mem=1G
     #SBATCH --time=00:05:00
-    #SBATCH --gres=gpu
+    #SBATCH --gres=gpu:a40:1
 
     cd $WORKING_DIR
 
