@@ -15,9 +15,12 @@ from time import time
 
 # do some computation
 start_time = time()
+sum = 0
 for i in range(300_000_000):
     result = i * i * (i - 1)
+    if sum > 300_000_000: sum -= result
+    else: sum += result
     # do something with the result
-print(f'computation time: {time() - start_time}')
+print(f'computation time: {(time() - start_time):.2f}, sum = {sum}')
 
 print("LET'S FUCKING GOOOOOOO!!!!!!!!!!!!!!")
