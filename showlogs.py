@@ -54,9 +54,10 @@ while True:
             for line in lines[line_idx:]:
                 #ckeck if the line ends with \r or \n
                 if line.endswith('\r'):
-                    print(line, end='\r')
+                    print(f'r: {line}')
+                    # print(line, end='\r')
                 elif line.endswith('\n'):
-                    print(line)
+                    print(f'n: {line}')
                 else:
                     raise ValueError(f'Line does not end with \\r or \\n: {line}')
 
