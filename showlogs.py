@@ -46,15 +46,13 @@ print(f'Watching logs in {args.directory}...')
 most_recent_file = remove_files_except_largest(args.directory)
 print(f'Most recent file: {most_recent_file}')
 
-previous_line = ''
+line_idx = 0
 while True:
     with open(os.path.join(args.directory, most_recent_file), 'r') as file:
-        #get last line
         lines = file.readlines()
-        last_line = lines[-1]
-        if last_line != previous_line:
-            print(last_line)
-            previous_line = last_line
-        else:
-            pass
+        if len(lines) > line_idx:
+            for line in lines[line_idx:]:
+                print(line, end='')
+            line_idx = len(lines)
+        
     sleep(0.01)
