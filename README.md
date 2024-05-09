@@ -80,7 +80,7 @@ The easiest (and most compatible across os) way is to create the container on th
     The `--sandbox` flag is used to create a writable container, so you can shell into it and
     install more packages if needed. If you don't need to install more packages, you can remove the
     `--sandbox` flag.
-    > This command may take a while to run, depending on the internet connection and the packages.
+    > This command will take a while to run (and may appear stuck, but it isn't), depending on the internet connection and the packages.
 
 6. Optional: log into the container and install more packages:
     ```bash

@@ -5,8 +5,9 @@
 #SBATCH --partition=allgroups
 #SBATCH --ntasks=1
 #SBATCH --mem=1G
-#SBATCH --time=00:05:00
+#SBATCH --time=00:02:00
 #SBATCH --gres=gpu:a40:1
-cd $WORKING_DIR
+cd $HOME/slurm_singularity_cluster
 echo "Starting job"
-srun singularity exec --nv mycontainer/mycontainer.sif python mycontainer/slurm_singularity_cluster/test_script.py
+srun singularity exec --nv mycontainer.sif python test_script.py
+echo "Job finished"

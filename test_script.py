@@ -9,4 +9,10 @@ import os
 print(f'Number of cores: {os.cpu_count()}')
 print(f'Memory: {os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES") / (1024.**3)} GB')
 
+
 print("Let's fucking go!!!")
+
+from time import sleep
+sleep(30) # sleep just to make the program last more
+
+print("LET'S FUCKING GOOOOOOO!!!!!!!!!!!!!!")
