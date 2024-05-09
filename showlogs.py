@@ -42,6 +42,7 @@ print(f'Watching logs in {args.directory}...')
 
 # Call the function to remove files
 most_recent_file = remove_files_except_largest(args.directory)
+print(f'Most recent file: {most_recent_file}')
 
 previous_line = ''
 while True:
