@@ -1,5 +1,6 @@
 import os
 import argparse
+from time import time, sleep
 
 def find_file_with_largest_integer(directory):
     files = os.listdir(directory)
@@ -56,3 +57,4 @@ while True:
             previous_line = last_line
         else:
             pass
+    sleep(0.01)
