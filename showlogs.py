@@ -33,6 +33,12 @@ parser = argparse.ArgumentParser(description='Remove all files except the one wi
 parser.add_argument('directory', type=str, help='The directory path')
 args = parser.parse_args()
 
+#show example of how to use the script
+print("Example: python showlogs.py /path/to/directory")
+
+print(f'Watching logs in {args.directory}...')
+
+
 # Call the function to remove files
 most_recent_file = remove_files_except_largest(args.directory)
 
