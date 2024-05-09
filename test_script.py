@@ -15,9 +15,9 @@ from time import time
 
 # do some computation
 start_time = time()
-for i in range(1000000):
+for i in range(10000000):
     result = i * i * (i - 1)
     # do something with the result
-print(f'computation time: {time() - start_time()}')
+print(f'computation time: {time() - start_time}')
 
 print("LET'S FUCKING GOOOOOOO!!!!!!!!!!!!!!")
