@@ -86,7 +86,7 @@ The easiest (and most compatible across os) way is to create the container on th
     ```bash
     singularity shell --writable mycontainer.sif
     ```
-    You should be in the container shell. You can install more packages, test your script, etc.
+    You should be in the container shell (`Apptainer>`). You can install more packages, test your script, etc.
     When you are done, type `exit` to exit the container.
 
 7. Exit the interactive session, failing in doing so will make the IT gods angry (DEI):
