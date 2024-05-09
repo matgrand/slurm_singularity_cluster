@@ -37,18 +37,13 @@ The easiest (and most compatible across os) way is to create the container on th
     > Don't abuse interactive sessions, they are meant for testing and debugging. Not for running
     long jobs.
 
-3. Create a directory for the container and move into it (name can be whatever):
-    ```bash
-    mkdir mycontainer
-    cd mycontainer
-    ```
-
-4. Clone this repository:
+3. Clone this repository and `cd` into it:
     ```bash
     git clone https://github.com/matgrand/slurm_singularity_cluster
+    cd slurm_singularity_cluster
     ```
 
-5. Look and modify the `mydefinition.def` file to suit your needs (with `nano slurm_singularity_cluster/mydefinition.def` for example).
+4. Look and modify the `mydefinition.def` file to suit your needs (with `nano mydefinition.def` for example).
     The file contains the instructions to build the container. You can add more dependencies, change
     the base docker image, etc.
     
@@ -76,25 +71,25 @@ The easiest (and most compatible across os) way is to create the container on th
     can find more information on how to create a container from scratch and what the `%post` and
     `%runscript` sections do.
 
-6. Build the container:
+5. Build the container:
     ```bash
-    singularity build --sandbox mycontainer.sif slurm_singularity_cluster/mydefinition.def
+    singularity build --sandbox mycontainer.sif mydefinition.def
     ```
     The `mycontainer.sif` file is the container itself, the name can be whatever you want.
-    The `slurm_singularity_cluster/mydefinition.def` is the path to the `.def` file.
+    The `mydefinition.def` is the path to the `.def` file.
     The `--sandbox` flag is used to create a writable container, so you can shell into it and
     install more packages if needed. If you don't need to install more packages, you can remove the
     `--sandbox` flag.
     > This command may take a while to run, depending on the internet connection and the packages.
 
-7. Optional: log into the container and install more packages:
+6. Optional: log into the container and install more packages:
     ```bash
-    singularity shell --writable --cleanenv mycontainer.sif
+    singularity shell --writable mycontainer.sif
     ```
     You should be in the container shell. You can install more packages, test your script, etc.
     When you are done, type `exit` to exit the container.
 
-8. Exit the interactive session:
+7. Exit the interactive session, failing in doing so will make the IT gods angry (DEI):
     ```bash
     exit
     ```
@@ -109,6 +104,7 @@ Examples](https://docs.dei.unipd.it/en/CLUSTER/SLURMExamples) sections of the DE
 documentation.
 
 To run a python script in the cluster, you need to create a Slurm job file like the following:
+
 `myjob.sh`:
 ```bash
 #!/bin/bash
@@ -118,21 +114,18 @@ To run a python script in the cluster, you need to create a Slurm job file like 
 #SBATCH --partition=allgroups
 #SBATCH --ntasks=1
 #SBATCH --mem=1G
-#SBATCH --time=00:05:00
+#SBATCH --time=00:02:00
 #SBATCH --gres=gpu:a40:1
-cd $WORKING_DIR
+cd $HOME/slurm_singularity_cluster
 echo "Starting job"
-srun singularity exec --nv mycontainer/mycontainer.sif python mycontainer/slurm_singularity_cluster/test_script.py
+srun singularity exec --nv mycontainer.sif python test_script.py
+echo "Job finished"
 ```
 The `myjob.sh` file will run the `test_script.py` python script in the `mycontainer.sif` container.
 
 The `#SBATCH` lines are the Slurm directives. They specify the job name, the error and output files,
 the partition, the number of tasks, the memory, the time, and the number of GPUs. You can change
 these values to suit your needs.
-
-The `cd $WORKING_DIR` line changes the directory to the working directory. The working directory is
-the directory where the job is submitted. You can change this line to `cd /path/to/your/directory`
-if you want to run the job in a specific directory.
 
 The `srun singularity exec --nv mycontainer.sif python test_script.py` line runs the
 `test_script.py` python script in the `mycontainer.sif` container. The `--nv` flag is used to enable
@@ -142,7 +135,7 @@ GPU support. You can remove this flag if you don't need GPU support.
 
 To submit the job to the scheduler, type:
 ```bash
-sbatch slurm_singularity_cluster/myjob.sh
+sbatch myjob.sh
 ```
 
 To check the status of the job, type:
