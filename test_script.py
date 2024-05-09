@@ -16,7 +16,7 @@ from time import time
 # do some computation
 start_time = time()
 sum = 0
-for i in range(20_000_000):
+for i in range(200_000_000):
     result = i * i * (i - 1)
     if sum > 300_000_000: sum -= result
     else: sum += result
