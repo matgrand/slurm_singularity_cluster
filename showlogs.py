@@ -3,6 +3,7 @@ import argparse
 
 def find_file_with_largest_integer(directory):
     files = os.listdir(directory)
+    print(f'Files in {directory}: \n{files}')
     largest_integer = float('-inf')
     largest_file = None
 
