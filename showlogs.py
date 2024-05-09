@@ -8,11 +8,12 @@ def find_file_with_largest_integer(directory):
     largest_file = None
 
     for file in files:
-        if os.path.isfile(os.path.join(directory, file)):
+        if file.startswith('output.'):
+            n = file.split('.')[1]
             try:
-                integer = int(os.path.splitext(file)[0])
-                if integer > largest_integer:
-                    largest_integer = integer
+                n = int(n)
+                if n > largest_integer:
+                    largest_integer = n
                     largest_file = file
             except ValueError:
                 pass
