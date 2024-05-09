@@ -52,15 +52,7 @@ while True:
         lines = file.readlines()
         if len(lines) > line_idx:
             for line in lines[line_idx:]:
-                #ckeck if the line ends with \r or \n
-                if line.endswith('\r'):
-                    print(f'r: {line}')
-                    # print(line, end='\r')
-                elif line.endswith('\n'):
-                    print(f'n: {line}')
-                else:
-                    raise ValueError(f'Line does not end with \\r or \\n: {line}')
-
+                print(line, end='')
             line_idx = len(lines)
         
     sleep(0.1)
