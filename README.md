@@ -135,6 +135,7 @@ GPU support. You can remove this flag if you don't need GPU support.
 
 To submit the job to the scheduler, type:
 ```bash
+cd slurm_singularity_cluster
 sbatch myjob.sh
 ```
 
