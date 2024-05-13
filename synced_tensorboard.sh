@@ -17,5 +17,5 @@ tensorboard --logdir $dst --port 6006 &
 # Sync the logs every x seconds
 while true; do
     rsync -r $usr@login.dei.unipd.it:$src $dst 
-    sleep 5
+    sleep 10
 done
