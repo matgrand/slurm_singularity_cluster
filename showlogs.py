@@ -55,4 +55,4 @@ while True:
                 print(line, end='')
             line_idx = len(lines)
         
-    sleep(0.1)
+    sleep(0.5)
