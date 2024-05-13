@@ -175,10 +175,11 @@ ssh <username>@login.dei.unipd.it
 
 ## Bonus 2: using tensorboard
 If you want to use `tensorboard` to visualize your training stats while the job is running, the best
-way I found is to syncronize the tensorboard logs with a local directory. This way you can run the 
+way I found is to synchronize the tensorboard logs with a local directory. This way you can run the 
 tensorboard server on your local machine and visualize the logs in real-time. You can do this by
 running the script `sync_tensorboard.sh` in this repository on your local machine. 
 > You need to have both `rsync` and `tensorboard` installed on your local machine.
+> `Bonus 1` is *highly recommended* to avoid typing your password every time you sync the logs.
 
 
 
