@@ -152,11 +152,33 @@ cat output.<job_id>.out
 For more information on how to monitor and manage your jobs, refer to the [Using
 Slurm](https://docs.dei.unipd.it/en/CLUSTER/using-slurm) section of the DEI cluster documentation.
 
+## Bonus 1: ssh without password on linux/mac
+If you are tired of typing your password every time you connect to the cluster, you can set up an
+SSH key pair. This will allow you to connect to the cluster without typing your password.
 
+To set up an SSH key pair, on your local machine (linux or mac) type:
+```bash
+ssh-keygen -t rsa
+```
+Press enter to accept the default file location and enter a passphrase (or press enter to skip it).
 
+To copy the public key to the cluster, type:
+```bash
+ssh-copy-id <username>@login.dei.unipd.it
+```
+Enter your password when prompted.
 
+Now you can connect to the cluster without typing your password:
+```bash
+ssh <username>@login.dei.unipd.it
+```
 
-
+## Bonus 2: using tensorboard
+If you want to use `tensorboard` to visualize your training stats while the job is running, the best
+way I found is to syncronize the tensorboard logs with a local directory. This way you can run the 
+tensorboard server on your local machine and visualize the logs in real-time. You can do this by
+running the script `sync_tensorboard.sh` in this repository on your local machine. 
+> You need to have both `rsync` and `tensorboard` installed on your local machine.
 
 
 
