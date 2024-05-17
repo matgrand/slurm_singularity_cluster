@@ -7,7 +7,6 @@ def find_file_with_largest_integer(directory):
     print(f'Files in {directory}: \n{files}')
     largest_integer = float('-inf')
     largest_file = None
-
     for file in files:
         if file.startswith('output.'):
             n = file.split('.')[1]
@@ -18,17 +17,6 @@ def find_file_with_largest_integer(directory):
                     largest_file = file
             except ValueError:
                 pass
-
-    return largest_file
-
-def remove_files_except_largest(directory):
-    largest_file = find_file_with_largest_integer(directory)
-
-    if largest_file:
-        for file in os.listdir(directory):
-            if os.path.isfile(os.path.join(directory, file)) and file != largest_file:
-                os.remove(os.path.join(directory, file))
-
     return largest_file
 
 # Parse command line arguments
@@ -38,21 +26,23 @@ args = parser.parse_args()
 
 #show example of how to use the script
 print("Example: python showlogs.py /path/to/directory")
-
 print(f'Watching logs in {args.directory}...')
 
-
 # Call the function to remove files
-most_recent_file = remove_files_except_largest(args.directory)
+most_recent_file = find_file_with_largest_integer(args.directory)
+line_idx = 0
 print(f'Most recent file: {most_recent_file}')
 
-line_idx = 0
 while True:
+    new_most_recent_file = find_file_with_largest_integer(args.directory)
+    if new_most_recent_file != most_recent_file:
+        most_recent_file = new_most_recent_file
+        line_idx = 0
+        print(f'Most recent file: {most_recent_file}')
     with open(os.path.join(args.directory, most_recent_file), 'r') as file:
         lines = file.readlines()
         if len(lines) > line_idx:
             for line in lines[line_idx:]:
                 print(line, end='')
             line_idx = len(lines)
-        
-    sleep(0.5)
+    sleep(2.5)
