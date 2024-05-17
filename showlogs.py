@@ -39,10 +39,15 @@ while True:
         most_recent_file = new_most_recent_file
         line_idx = 0
         print(f'Most recent file: {most_recent_file}')
-    with open(os.path.join(args.directory, most_recent_file), 'r') as file:
-        lines = file.readlines()
-        if len(lines) > line_idx:
-            for line in lines[line_idx:]:
-                print(line, end='')
-            line_idx = len(lines)
-    sleep(2.5)
+        sleep(0.1)
+    try:
+        with open(os.path.join(args.directory, most_recent_file), 'r') as file:
+            lines = file.readlines()
+            if len(lines) > line_idx:
+                for line in lines[line_idx:]:
+                    print(line, end='')
+                line_idx = len(lines)
+    except Exception as e:
+        print(f'Error: {e}')
+        continue
+    sleep(2.4)
