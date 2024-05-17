@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# This script will sync the logs from the cluster to the local machine
+# This script is to enable tensorboard in the cluster, in order to do it
+# this script will sync the logs from the cluster to the local machine
 # The logs will be stored in the tmp/ directory
 
 # Define the user, source and destination, change accordingly
